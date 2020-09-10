@@ -1,9 +1,11 @@
 using Api.Configurations;
 using Api.Services;
+using Api.Subscribers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using StackExchange.Redis;
 
 namespace Api
 {
@@ -21,7 +23,14 @@ namespace Api
             services.AddMemoryCache();
             services.AddControllers();
             services.AddSwagger();
-            services.AddRedisMessageQueue(Configuration);
+            
+            services.AddSingleton<IConnectionMultiplexer>(x =>
+                ConnectionMultiplexer.Connect(Configuration.GetValue<string>("RedisConnection"))
+            );
+
+            services.AddHostedService<RedisSubscriberOne>();
+            services.AddHostedService<RedisSubscriberTwo>();
+            
             services.AddTransient<ISomeService, SomeImplementation>();
             
             // services.AddTransient<ICache, RedisCache>();
