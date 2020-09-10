@@ -33,8 +33,8 @@ namespace Api
             
             services.AddTransient<ISomeService, SomeImplementation>();
             
-            // services.AddTransient<ICache, RedisCache>();
-            services.AddTransient<ICache, MemoryCache>();
+            services.AddTransient<ICache, RedisCache>();
+            // services.AddTransient<ICache, MemoryCache>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
