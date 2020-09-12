@@ -13,7 +13,7 @@ namespace Api.Subscribers
         public RedisSubscriberOne(IConnectionMultiplexer connectionMultiplexer)
         {
             _connectionMultiplexer = connectionMultiplexer;
-        }
+   }
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {

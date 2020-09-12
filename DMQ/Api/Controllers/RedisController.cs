@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Api.Dto;
-using Api.Services;
+using Api.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using StackExchange.Redis;
 

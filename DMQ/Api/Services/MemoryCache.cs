@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Api.Interfaces;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
 
@@ -19,7 +20,7 @@ namespace Api.Services
             var found = _cache.TryGetValue<string>(key, out var json);
 
             if (!found) throw new ArgumentException("Key not found");
-            
+
             var value = JsonConvert.DeserializeObject<T>(json);
 
             return Task.FromResult(value);
@@ -30,7 +31,7 @@ namespace Api.Services
             var json = JsonConvert.SerializeObject(value);
 
             _cache.Set(key, json);
-            
+
             return Task.CompletedTask;
         }
     }

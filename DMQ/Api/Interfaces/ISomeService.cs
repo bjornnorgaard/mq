@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Api.Services
+namespace Api.Interfaces
 {
     public interface ISomeService
     {
